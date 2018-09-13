@@ -1,0 +1,111 @@
+\documentclass{report}
+\usepackage[a4paper, margin=2.54cm]{geometry}
+\usepackage{graphicx}
+\usepackage[backend=bibtex,style=authoryear]{biblatex}
+  \bibleography{YourBibleography}
+\usepackage{caption}
+\usepackage{Sweave}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{soul}
+\usepackage{float}
+\usepackage{rotfloat}
+\restylefloat{table}
+\usepackage[font=small,labelfont=bf,margin=0.5in]{caption}
+
+
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+% Some definitions for sweave %
+\DefineVerbatimEnvironment{Sinput}{Verbatim} {xleftmargin=2em}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{xleftmargin=2em}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{xleftmargin=2em}
+\fvset{listparameters={\setlength{\topsep}{0pt}}}
+\renewenvironment{Schunk}{\vspace{\topsep}}{\vspace{\topsep}}
+
+\begin{titlepage}
+	\centering
+	\includegraphics[width=0.15\textwidth]{Frontierlogo.jpg}\par\vspace{1cm}%keep this image the same
+	{\scshape\LARGE Your Report Title \par}
+	\vspace{1cm}
+	\includegraphics[width=0.15\textwidth]{Frontierlogo.jpg}\par\vspace{1cm} %You can include a photo for your project if you wish
+	{\Large Your Project Location\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Project subtitle\par}
+	\vspace{2cm}
+	{\Large\itshape Project staff names\par}
+	\vfill
+
+% Bottom of the page
+	{\large Your Study Period\par}
+\end{titlepage}
+
+\section*{Acknowledgements}
+
+\newpage
+\tableofcontents
+\newpage
+\section{Introduction}
+You can copy and paste this entire text into your Sweave project and modify the headings as necessary. You can also add sections and subsections to fit your project. Make sure that all the necessary elements and images are saved in the same folder. If you already have text written up, you can copy and paste each section into the document, but note that you will have to apply any formatting witht the relevant \Latex command (\verb\textbf{}, \verb\textit{}, etc.). 
+You might want to include a map of your project location. Here's how to do it:\\
+  \begin{figure}{H}
+    \centering
+    \includegraphics[scale=1]{YourImageFile.png}
+    \caption{\textit{This is your figures caption}}
+  \end{figure}
+You can copy and paste this format throughout the rest of the document if you want to include images or figures not generated using R. The images must either be .PNG or .JPG files.
+\section{Study1}
+
+  \subsection{Introduction}
+
+  \subsection{Methodology}
+  
+  \subsection{Results}
+If you want to code your R figures directly into your \Latex script, here's how to do it:
+    \begin{figure}[H]
+      \centering
+      <<fig=True>>==
+      x <- runif(100)
+      hist(x, main="Random variables from a uniform distribution",
+     xlab = "Random Variable")
+      @
+      \caption{This is your figure caption, it will automatically be placed below the inserted graphic}
+    \end{figure}
+Sweave will automatically run the \verb{\includegraphics{}} command and insert the image without you having to save it as an image through RStudio. You can use the Sweave R envrionment as many times as you want throughout your report. If you need to include any specific R libraries in our document, they should go inside each individual Sweave environment.
+
+You can do the same with R tables, but you can also type out \Latex tables if you want as well. See the \Latex guide included in this repository to get an idea of how to format them.
+  \subection{Discussion}
+  
+\section{Study X}
+
+  \subsection{Introduction}
+  
+  \subsection{Methodology}
+  
+  \subsection{Results}
+  
+  \subection{Discussion}
+  
+\section{Conclusions & Future Work}
+
+\section*{References}
+The easiest way to create your bibleography is by using Biblatex. To do that, you can use the .bib file included in this repository. All ou need to do is copy and paste the field types that you need to use and fill out the fields with the relevant info (Author, Title, Date, etc.). You can delete any lines that start with OPT if you do not want to include them.
+
+Make sure you save the .bib file inside the same folder as the Sweave project. To cite from this list use the following format \verb(\cite{YourCiteTagName}) and it will populate the bibleography and the Reference. Separate multiple tags with a comma they will appear in the order your type them.\\
+Insert your bibleography with the following command:\\
+\newpage
+\printbibleography
+\newpage
+\section*{Appendices}
+
+  \subsection*{Appendix 1: Examples}
+  
+  \subsection*{Appendix X: Demonstrations}
+
+\end{document}
